@@ -1,0 +1,6 @@
+---
+ classes:
+  - jetty
+ deployit::use_exported_resources: false
+ deployit::http_server_address: deployit.local.domain
+ deployit::admin_password: admin

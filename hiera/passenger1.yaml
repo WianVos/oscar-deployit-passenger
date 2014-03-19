@@ -1,0 +1,39 @@
+---
+classes:
+ - apache
+ - base
+ - deployit
+ - rvm
+ - rvm::passenger::apache
+deployit::server: 'false'
+deployit::java_home: '/kvk/oracle-jdk-6u41'
+deployit::version: '3.9.4'
+deployit::cis:
+       Infrastructure/ZMM/project/environment/SshHost:
+          name: 'Infrastructure/ZMM/%{hostname}'
+          type: 'overthere.SshHost'
+          properties:
+            address: '%{ipaddress_eth1}'
+            connectionType: 'SUDO'
+            os: 'UNIX'
+            port: '22'
+            username: 'deployit'
+            sudoUsername: 'root'
+            temporaryDirectoryPath: '/var/tmp'
+            tags: '%{project}'
+       Infrastructure/ZMM/project/environment/JettyServer:
+          name: 'Infrastructure/ZMM/%{hostname}/apache'
+          type: 'passenger.ApacheHttpdServer'
+          properties:
+            tags: '%{project}'
+rvm::proxy_url: 'http://dbxwvo:Twilight01@proxy2.k94.kvk.nl:8080'
+rvm::version: '1.23.14'
+rvm::system_rubies:
+      'ruby-1.9.3-p448':
+        ensure: 'present'
+        default_use: 'true'
+        build_opts: ['']
+rvm::passenger::apache::ruby_version: ruby-1.9.3-p448
+#rvm::passenger::apache::proxy_url: 'http://dbxwvo:Twilight01@proxy2.k94.kvk.nl:8080'
+rvm::passenger::apache::version: 4.0.40
+

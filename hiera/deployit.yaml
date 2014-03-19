@@ -1,0 +1,8 @@
+---
+ classes:
+  - 'deployit'
+ deployit::server: 'true'
+ deployit::java_home: '/kvk/oracle-jdk-6u41'
+ deployit::version: '3.9.4'
+ deployit::admin_password: 'admin'
+

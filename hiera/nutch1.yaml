@@ -1,0 +1,56 @@
+---
+ # Initial dataset
+ nutch::crawldb_archive: 'http://repos.k94.kvk.nl/software/nutch/crawldb/crawldb-20130726.tar.gz'
+
+ nutch::config_hash:
+  http.agent.name: 'DOP Nutch indexer'
+  elastic.cluster: 'ondernemersplein19-sbx'
+  elastic.index: 'index1'
+  elastic.max.bulk.docs: 250
+  elastic.max.bulk.size: 2500500
+  tika.boilerpipe: true
+  tika.boilerpipe.extractor: 'ArticleExtractor'
+  plugin.includes: 'headings|protocol-httpclient|parse-tika|index-(basic|more|metadata)|urlnormalizer-(basic|regex)|urlfilter-(prefix|suffix|domain|regex)|indexer-elastic|subcollection'
+  db.fetch.interval.max: 5184000
+  db.fetch.interval.default: 604800
+  db.fetch.schedule.class: org.apache.nutch.crawl.AdaptiveFetchSchedule
+  db.fetch.schedule.adaptive.min_interval: 86400
+  db.fetch.schedule.adaptive.max_interval: 2592000
+  db.fetch.schedule.adaptive.sync_delta: false
+  db.signature.class: 'org.apache.nutch.crawl.TextProfileSignature'
+  db.injector.overwrite: true
+  db.redirects.interval.max: true
+  db.gone.interval.max: true
+  http.proxy.host: '10.10.121.17'
+  http.proxy.port: 8080
+  http.proxy.username: ''
+  http.proxy.password: ''
+  http.agent.name: 'Mozilla'
+  http.agent.version: '5.0'
+  http.robots.agents: 'Mozilla,OpenindexSpider,Openindex,*'
+  http.agent.description: 'compatible; OpenindexSpider'
+  http.agent.url: '+http://www.openindex.io/en/webmasters/spider.html'
+  http.agent.email: 'systemsATopenindexDOTio'
+  http.content.limit: 32554432
+  http.timeout: 60000
+  http.redirect.max: 0
+  generate.count.mode: 'host'
+  generate.max.count: 500
+  fetcher.queue.mode: 'byHost'
+  fetcher.threads.per.queue: 1
+  fetcher.max.exceptions.per.queue: 6
+  fetcher.server.delay: 2.3
+  fetcher.threads.fetch: 2
+  fetcher.timelimit.mins: 30
+  fetcher.parse: true
+  fetcher.store.content: false
+  parser.html.outlinks.ignore_tags: 'img,script,link,form,frame'
+  parser.fix.embeddedparams: false
+  parser.timeout: 15
+  indexer.max.title.length: -1
+  indexer.skip.notmodified: false
+  index.parse.md: 'h1,h2,h3,h4,h5,description,tcm-id,op-content-type,rawContent'
+  moreIndexingFilter.indexMimeTypeParts: false
+  moreIndexingFilter.mapMimeTypes: true
+  headings: 'h1,h2,h3,h4,h5'
+  headings.multivalued: true

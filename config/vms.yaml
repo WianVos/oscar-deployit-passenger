@@ -1,0 +1,62 @@
+---
+vms:
+- name: master
+  hostname: master
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-master
+- name: master1
+  hostname: master1
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-master
+- name: deployit.local.domain
+  hostname: deployit.local.domain
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: jetty1
+  hostname: jetty1
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: passenger1
+  hostname: passenger1
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: jetty2
+  hostname: jetty2
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: jetty3
+  hostname: jetty3
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: jetty4
+  hostname: jetty4
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: jetty5
+  hostname: jetty5
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: was1
+  hostname: was1
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: postgres1
+  hostname: postgres1
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent
+- name: postgres2
+  hostname: postgres2
+  box: centos-64-x64-vbox4210-nocm
+  roles:
+  - pe-puppet-agent

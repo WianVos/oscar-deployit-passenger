@@ -1,0 +1,8 @@
+---
+classes:
+  - r10k
+ # - r10k::mcollective
+ # - pe_mcollective
+r10k::remote: 'git@se94alm001.k94.kvk.nl:/var/git/r10k.git'
+r10k::provider: pe_gem
+r10k::gem_use_local: true

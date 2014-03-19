@@ -1,0 +1,52 @@
+---
+ postgresql_wrapper::role: 'master'
+ postgresql_wrapper::slave_address: 'postgres2'
+
+ postgresql_wrapper::hba_rules:
+  'Allow ssl access for test from same subnet':
+   description: 'Allow ssl access for test from same subnet'
+   type: 'hostssl'
+   database: 'test'
+   user: 'test'
+   address: "%{network_eth1}/%{netbits_eth1}"
+   auth_method: 'md5'
+  'Allow non-SSL connections from same subnet':
+   description: 'Allow non-SSL access for test from same subnet'
+   type: 'host'
+   database: 'test'
+   user: 'test'
+   address: "%{network_eth1}/%{netbits_eth1}"
+   auth_method: 'md5'
+  'Allow non-SSL connections to postgres for replication':
+   description: 'Allow non-SSL connections to postgres from same subnet for replication'
+   type: 'hostssl'
+   database: 'replication'
+   user: 'all'
+   address: "%{network_eth1}/%{netbits_eth1}"
+   auth_method: 'md5'
+
+ postgresql_wrapper::config_entries:
+  'ssl':
+   value: 'on'
+  'ssl_ciphers':
+   value: 'ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH'
+  'ssl_renegotiation_limit':
+   value: '512MB'
+  'ssl_cert_file':
+   value: '/var/lib/pgsql/9.2/server.crt'
+  'ssl_key_file':
+   value: '/var/lib/pgsql/9.2/server.key'
+  'wal_level':
+   value: 'hot_standby'
+  'max_wal_senders':
+   value: '3'
+  'logging_collector':
+   value: 'on'
+  'checkpoint_segments':
+   value: '32'
+  'wal_keep_segments':
+   value: '64'
+  'archive_mode':
+   value: 'on'
+  'archive_command':
+   value: "rsync -ae 'ssh -o StrictHostKeyChecking=no' %p postgres2:/var/lib/pgsql/9.2/data/archive/%f"

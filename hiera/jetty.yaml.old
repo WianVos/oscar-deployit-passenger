@@ -1,0 +1,94 @@
+---
+ classes:
+  - 'deployit'
+ deployit::server: 'false'
+ deployit::java_home: '/kvk/oracle-jdk-6u41'
+ deployit::version: '3.9.4'
+ deployit::cis:
+       Environments/ZMM:
+          name: 'Environments/ZMM'
+          type: 'core.Directory'
+          remove_when_expired: 'false'
+       Environments/ZMM/project:
+          name: 'Environments/ZMM/%{project}'
+          type: 'core.Directory'
+          remove_when_expired: 'false'
+       Environments/ZMM/project/environment:
+          name: 'Environments/ZMM/%{project}/%{environment}'
+          type: 'core.Directory'
+          remove_when_expired: 'false'
+       Environments/ZMM/project/environment/%{project}:
+          name: 'Environments/ZMM/%{project}/%{environment}/%{project}'
+          type: 'udm.Environment'
+          remove_when_expired: 'false'
+          properties:
+              dictionaries:
+                 - '@ref': 'Environments/ZMM/%{project}/%{environment}/%{project}-dictionary'
+                 - '@ref': 'Environments/ZMM/%{project}/%{environment}/%{project}-password'
+       Environments/ZMM/project/environment/project-dictionary:
+          name: 'Environments/ZMM/%{project}/%{environment}/%{project}-dictionary'
+          type: 'udm.Dictionary'
+          remove_when_expired: 'false'
+       Environments/ZMM/project/environment/project-password:
+          name: 'Environments/ZMM/%{project}/%{environment}/%{project}-password'
+          type: 'udm.EncryptedDictionary'
+          remove_when_expired: 'false'
+       Infrastructure/ZMM:
+          name: 'Infrastructure/ZMM'
+          type: 'core.Directory'
+          remove_when_expired: 'false'
+       Infrastructure/ZMM/project:
+          name: 'Infrastructure/ZMM/%{project}'
+          type: 'core.Directory'
+          remove_when_expired: 'false'
+       Infrastructure/ZMM/project/environment:
+          name: 'Infrastructure/ZMM/%{project}/%{environment}'
+          type: 'core.Directory'
+          remove_when_expired: 'false'
+       Infrastructure/ZMM/project/environment/SshHost:
+          name: 'Infrastructure/ZMM/%{project}/%{environment}/%{hostname}'
+          type: 'overthere.SshHost'
+          properties:
+            address: '%{ipaddress_eth1}'
+            connectionType: 'SUDO'
+            os: 'UNIX'
+            port: '22'
+            username: 'deployit'
+            privateKeyFile: '/opt/deployit/deployit-server/keys/id_%{hostname}_deployit_rsa'
+            sudoUsername: 'root'
+            temporaryDirectoryPath: '/var/tmp'
+            tags: '%{project}'
+       Infrastructure/ZMM/project/environment/JettyServer:
+          name: 'Infrastructure/ZMM/%{project}/%{environment}/%{hostname}/jetty'
+          type: 'jetty.Server'
+          properties:
+            home: '/kvk/jetty/server'
+            tags: '%{project}'
+ deployit::memberships:
+       'basic memberships jetty':
+         env: 'Environments/ZMM/%{project}/%{environment}/%{project}'
+         members:
+          - 'Infrastructure/ZMM/%{project}/%{environment}/%{hostname}'
+          - 'Infrastructure/ZMM/%{project}/%{environment}/%{hostname}/jetty'
+ deployit::users:
+       'basic jetty user':
+         id: '%{project}_jenkins'
+         password: 'jenkins1234'
+ deployit::roles:
+       'environment_role':
+         id: '%{project}-%{environment}-jetty'
+         users:
+          - '%{project}_jenkins'
+ deployit::dictionary_settings:
+       'Environments/ZMM/project/environment/project-dictionary/test_setting':
+         key: 'Environments/ZMM/%{project}/%{environment}/%{project}-dictionary/%{project}'
+         value: 'bla bla bla'
+ deployit::role_permissions:
+       'project environment jetty basics':
+         name: '%{project} %{environment} jetty basics'
+         role: '%{project}-%{environment}-jetty'
+         cis:
+           - 'Infrastructure/ZMM/%{project}/%{environment}'
+         granted_permissions:
+           - 'controltask#execute'
+           - 'read'

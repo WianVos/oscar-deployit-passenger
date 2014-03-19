@@ -1,0 +1,12 @@
+---
+ classes:
+  - 'postgresql_server'
+
+ postgresql::globals::version: '9.2'
+ postgresql::server::listen_addresses: '127.0.0.1,%{ipaddress_eth1}'
+ postgresql::server::postgres_password: 'zBaYMPshagttSWBc26JjK4tD'
+
+ postgresql_wrapper::ssl: true
+ postgresql_wrapper::install_dir: '/var/lib/pgsql/9.2'
+ postgresql_wrapper::replication_user: 'replication'
+ postgresql_wrapper::replication_password: 'B5Rr4W7jPKssXtK4KWNjAPWU'

@@ -1,0 +1,50 @@
+---
+ classes:
+  - 'java'
+ basedir: '/kvk'
+ basepackages:
+  - 'bind-utils'
+  - 'man'
+  - 'wget'
+  - 'sysstat'
+  - 'zip'
+  - 'unzip'
+  - 'bc'
+  - 'cronie'
+  - 'cronie-anacron'
+  - 'crontabs'
+  - 'mailx'
+  - 'nc'
+  - 'lsof'
+  - 'collectd-lvm'
+ admlimkeys:
+  dbxwvo/admlim:
+   ensure: 'present'
+   user: 'admlim'
+   key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC5U117bmrOjk4SdaSF+2uc+eoLgzEc0eEbeLzGFbDsQ1DCp0tnJiNOBs5BGrJ5Zzs0qJqEjWDU8Vghcjeda03aKphl2WqRpu4zUaB3FJ0906zXJozJH7of4X/ksBrg6kQqNq9uDV0Arl8ijKPkNijcZRGxODu0xXgPjtlpQoM1VI4BIRJivb06srDiOhDJZ9R//cgPstgmsRMYTzTkgJ+HOhA0ndxlMhqnGj4sxlWUs0tx4ofM+xfhQ63LPsTiDNxowk/vZrtIupvU4s6LyrEFsbPnOXhcWsE74EcbxP29vBrBceabdf8ktniA4kvfockt9PacAkN7y0+KvGohyPMd'
+  dbxbsc/admlim:
+   ensure: 'present'
+   user: 'admlim'
+   key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDc17EcK2D2AKiokIuy6sb0OMy3ugHnn0H6HaNxFO2GOjunm9Cgv9T3X/iSOyjUyQkXBTmfZl625NBzNQd+W1PQdhYsLzfuiWpe1L4AQvPcT9WcfV/5vF1MOSXnPSWCX/lViOKZBbOVY3p67/V7vt6oWKF25U2PBcM+nZBPGaqPKtY+e8NeHa8r/RrMIpKOsuprnFR4KcafwloQVYD+cLxiPoDmUgtAjHi1wFDImjcLT6tSAaUJH92IGqn4V6Ss0ItcdiZJS4b6TULW4JvkVYF+3cKh79f9YmLUezT6rXxdiGUfQOC5qRpBGnngDbR8eTWHsl9Zq9MPwLyhpRuNuyZP'
+  dbxsst/admlim:
+   ensure: 'present'
+   user: 'admlim'
+   key: 'AAAAB3NzaC1yc2EAAAADAQABAAACAQC8H3O9BtFcjfOhDRfc3XcjaVHaOgyu33s3GVTvppwh7NkQvhIKiq8hwh5GK50sZw5HfwsH+iCdlL1fGp3bKM9nD6OvNJbowlRe0DGt+WBYlhxXiFlsa4EvKPMAr/ujt4+4lHz5ejRo0sLRvzk8VkbyRzPkRAGhZt3OHoY4mgpe1w+LIo87Kve3wa3Rf4Jo0IzJkjag9rVpA8n7ulOhq5ycKLI6arqWUy2dshy02Py6KWTGPqhURQUJqCp/X1jy9jXm/lEL/HbZHa3oZ8qu37Uyj00vTj3mS6pLJ7oe5g1j++Js5tHHABpmdmryVGzQvImb/83BueUHqlAuYeLp1tRkp1RCB3/MnkmFwRXwv3AeH0ovoJTYvK7kUZruwFAFaACbyhCGKIvu0A0ePJJOEMpKuqm2/gDfyyVDb3vwEgXngFnoRWNyAxBCFGHDDa5yqsbMnaJvFIlSwqWLthi2zHTxrv4dMYGcWipjY6xyBXqV6sGlnwYUis8NQAWuILLmvukIXn9Hk3/lWa4L/LYj/GvGVy6uwSYsDPbwL6CkfjP4pMpKbUAuov9fBMH2xPX27WpufQd7G+TZ3s3wKEYe+4Jwm7zqLnxkcLE8MYHSQHYMil7Q5qbP4n2nV68FE5XRg4hut0GvmYaGbLlv0V548C27YNi09Bi2X73RNoICj0GUyw=='
+ ntpservers:
+  - '10.10.0.1'
+ reposerver: 'http://repos.k94.kvk.nl'
+ repo_yum_url: 'http://repos.k94.kvk.nl/yum-repo'
+ repo_http_url: 'http://repos.k94.kvk.nl/http-repo'
+ nexus_url: 'http://mvnrepo.k94.kvk.nl'
+ java:
+  - oracle-jdk-6u41-linux-x64
+ deployit::use_exported_resources: false
+ deployit::http_server_address: deployit.local.domain
+ deployit::admin_password: admin
+ ldap.server.name: 'ldap1.test.k94.kvk.nl'
+ ldap.server.port: '389'
+ ldap.server.admin: 'uid=zmmdev,cn=users,ou=diensten,o=kvk,c=nl'
+ ldap.server.admin.password: '7d1c8408991e2b10926aad23ef2e83f9'
+ ldap.server.bind.dn: 'os400-profile=wsalllogon,cn=accounts,os400-sys=as94aso1.k94.kvk.nl'
+ ldap.server.bind.password: 'waslogon'
+ ldap.security.domain: 'kvk.nl'

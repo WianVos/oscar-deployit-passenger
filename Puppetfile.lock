@@ -1,0 +1,26 @@
+GIT
+  remote: http://github.com/puppetlabs/puppetlabs-inifile.git
+  ref: master
+  sha: a0b63ebf777f66a33d7d10be72a85f04d5e89a1e
+  specs:
+    inifile (1.0.0)
+
+GIT
+  remote: http://github.com/puppetlabs/puppetlabs-pe_gem.git
+  ref: master
+  sha: 42f50e9abe28215a3e3a7f70ea9a8966fb707b85
+  specs:
+    pe_gem (0.0.1)
+
+GIT
+  remote: http://github.com/puppetlabs/puppetlabs-stdlib.git
+  ref: master
+  sha: 01c9c3c97998c220c41b386e64468a1efff37127
+  specs:
+    stdlib (4.1.0)
+
+DEPENDENCIES
+  inifile (>= 0)
+  pe_gem (>= 0)
+  stdlib (>= 0)
+
